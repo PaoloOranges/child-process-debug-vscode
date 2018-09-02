@@ -6,7 +6,7 @@ let child_process_debug = require('./child_process_debug.js')
 
 describe('child_process_debug', function() {
 
-    it('should fork withouth changing existing params', function() {
+    it('should fork withouth changing --inspect-brk param', function() {
         let child = child_process_debug.fork('test_child.js');        
         
         if(process.execArgv.some(arg => { return arg.includes("--inspect-brk"); }))
@@ -18,5 +18,11 @@ describe('child_process_debug', function() {
             expect(child.spawnargs.some(arg => { return arg.includes("--inspect-brk"); })).to.be.false;
         }
         
+    });
+
+    it('should fork withouth changing existing params', function() {
+        let child = child_process_debug.fork('test_child.js', 'passedParam');
+
+        expect(child.spawnargs.some(arg => { return arg.includes("passedParam"); })).to.be.true;
     });
 });
