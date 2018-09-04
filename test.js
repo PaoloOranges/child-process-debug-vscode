@@ -20,9 +20,9 @@ describe('child_process_debug', function() {
         
     });
 
-    it('should fork withouth changing existing params', function() {
-        let child = child_process_debug.fork('test_child.js', 'passedParam');
-
+    it('should fork withouth changing existing param', function() {
+        let child = child_process_debug.fork('test_child.js', ['passedParam']);
+        
         expect(child.spawnargs.some(arg => { return arg.includes("passedParam"); })).to.be.true;
     });
 });
