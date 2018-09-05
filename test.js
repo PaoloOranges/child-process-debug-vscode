@@ -32,4 +32,15 @@ describe('child_process_debug', function() {
         expect(child.spawnargs.some(arg => { return arg.includes("passedParam"); })).to.be.true;
         expect(child.spawnargs.some(arg => { return arg.includes("secondParamPassed"); })).to.be.true;
     });
+
+    it('should fork with a different inspect port', function() {
+        let child = child_process_debug.fork('test_child.js', ['passedParam', 'secondParamPassed']);
+        
+        let inspectPort = process.debugPort;
+
+        const extractPort = (param ) => { return parseInt(param.substring(param.indexOf('=')+1, param.length)); };
+        let inspectPortChild = extractPort(child.spawnargs.find(arg => { return arg.includes("--inspect-brk"); }));
+
+        expect(inspectPortChild).to.be.not.eql(inspectPort);
+    });
 });
