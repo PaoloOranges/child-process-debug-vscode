@@ -57,7 +57,7 @@ describe('child_process_debug', function() {
         expect(inspectPortChild).to.be.not.eql(inspectPort).and.to.be.not.eql(inspectPortChild2);
     });
 
-    it('should fork with a different inspect port', function() {
+    it('should fork with a different inspect port preserving  params', function() {
         let child = child_process_debug.fork('test_child.js', ['passedParam', 'secondParamPassed']);
         
         let inspectPort = process.debugPort;
@@ -66,5 +66,8 @@ describe('child_process_debug', function() {
         let inspectPortChild = extractPort(child.spawnargs.find(arg => { return arg.includes("--inspect-brk"); }));
 
         expect(inspectPortChild).to.be.not.eql(inspectPort);
+        expect(child.spawnargs.some(arg => { return arg.includes("passedParam"); })).to.be.true;
+        expect(child.spawnargs.some(arg => { return arg.includes("secondParamPassed"); })).to.be.true;
+
     });
 });
