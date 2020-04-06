@@ -1,0 +1,30 @@
+{
+  "name": "child-process-debug-vscode",
+  "version": "0.0.1",
+  "description": "debug with vs code, nodejs spawned child processes",
+  "main": "child_process_debug.js",
+  "dependencies": {
+    "child_process": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PaoloOranges/child-process-debug-vscode.git"
+  },
+  "keywords": [
+    "debug",
+    "child",
+    "process",
+    "nodejs",
+    "vscode"
+  ],
+  "author": "Paolo Oranges",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PaoloOranges/child-process-debug-vscode/issues"
+  },
+  "homepage": "https://github.com/PaoloOranges/child-process-debug-vscode#readme"
+}
